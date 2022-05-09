@@ -14,7 +14,7 @@ class FirstFragment : Fragment() {
     private lateinit var binding: FragmentFirstBinding
     private val pixabyViewModel: PixabyViewModel by activityViewModels {
         PixabyViewModel.PixabyViewModelFactory(
-            (activity?.application as PixabyApplication).getAllUseCase,
+            (activity?.application as PixabyApplication).getAllHitsUseCase,
         )
     }
 

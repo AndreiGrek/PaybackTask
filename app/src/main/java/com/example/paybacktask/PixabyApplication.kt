@@ -3,9 +3,7 @@ package com.example.paybacktask
 import android.app.Application
 import com.example.paybacktask.data.RepositoryImpl
 import com.example.paybacktask.data.RetrofitData
-import com.example.paybacktask.domain.GetAllUseCase
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.SupervisorJob
+import com.example.paybacktask.domain.GetAllHitsUseCase
 
 class PixabyApplication : Application() {
 
@@ -17,5 +15,5 @@ class PixabyApplication : Application() {
     private val repository by lazy { RepositoryImpl(retrofit) }
 
     //Usecases
-    val getAllUseCase by lazy { GetAllUseCase(repository) }
+    val getAllHitsUseCase by lazy { GetAllHitsUseCase(repository) }
 }

@@ -9,6 +9,6 @@ interface RetrofitService {
 //    @Headers("key=27280788-eaad89dd8cf4e500ae82c0243")
 //    @GET("standings/?&season=2021")
     @GET ("/api/?key=27280788-eaad89dd8cf4e500ae82c0243")
-    suspend fun getAll(): Response<PixabayResponse>
+    suspend fun getAllHits(): Response<PixabayResponse>
 
 }
