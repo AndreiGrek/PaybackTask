@@ -22,9 +22,9 @@ class PixabyViewModel(
     }
 //    val loading = MutableLiveData<Boolean>()
 
-    fun getAllPictures() {
+    fun getAllPictures(query: String) {
         job = CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
-            val response = getAllHitsUseCase.execute()
+            val response = getAllHitsUseCase.execute(query)
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
 //                    loading.value = true

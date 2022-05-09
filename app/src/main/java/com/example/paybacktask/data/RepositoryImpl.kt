@@ -5,5 +5,5 @@ import com.example.paybacktask.domain.Repository
 class RepositoryImpl(
     private val retrofitService: RetrofitService,
 ) : Repository {
-    override suspend fun getAllHits() = retrofitService.getAllHits()
+    override suspend fun getAllHits(query: String) = retrofitService.getAllHits(query)
 }

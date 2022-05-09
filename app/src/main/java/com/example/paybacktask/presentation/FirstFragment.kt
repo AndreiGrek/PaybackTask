@@ -6,11 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.paybacktask.PixabyApplication
+import com.example.paybacktask.R
 import com.example.paybacktask.databinding.FragmentFirstBinding
 
 class FirstFragment : Fragment() {
 
+    private  val FRUITS = "fruits"
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var picturesAdapter: PicturesAdapter
     private lateinit var binding: FragmentFirstBinding
     private val pixabyViewModel: PixabyViewModel by activityViewModels {
         PixabyViewModel.PixabyViewModelFactory(
@@ -28,18 +34,19 @@ class FirstFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.apply{
-            btn1.setOnClickListener {
-                pixabyViewModel.getAllPictures()
-//            findNavController().navigate(FirstFragmentDirections.actionFirstFragmentToSecondFragment("Жажжа"))
-            }
+        pixabyViewModel.getAllPictures(FRUITS)
+        recyclerView = view.findViewById(R.id.rv_hits_list)
+        recyclerView.layoutManager = LinearLayoutManager(context)
+
+        binding.btnSearch.setOnClickListener {
+            val query = binding.etSearch.text.toString()
+            pixabyViewModel.getAllPictures(query)
         }
+
         pixabyViewModel.pixabayResponse.observe(viewLifecycleOwner, {
-            binding.apply {
-                tv1.text = it.hits[0].tags
-                tv2.text = it.hits[1].tags
-                tv3.text = it.hits[2].tags
-            }
+            picturesAdapter = PicturesAdapter(it.hits)
+            recyclerView.adapter = picturesAdapter
+            picturesAdapter.notifyDataSetChanged()
         })
     }
 }
