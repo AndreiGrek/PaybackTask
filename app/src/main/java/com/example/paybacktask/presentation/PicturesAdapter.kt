@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.paybacktask.R
@@ -47,8 +48,24 @@ class CustomViewHolder(
 
     init {
         view.setOnClickListener {
-            val navController = Navigation.findNavController(itemView)
-            navController.navigate(FirstFragmentDirections.actionFirstFragmentToDetailInfoFragment(hit))
+            val builder = AlertDialog.Builder(view.context)
+            builder
+                .setMessage(view.context.getString(R.string.show_details_question))
+                .setPositiveButton(
+                    itemView.context.getString(R.string.yes_button)
+                ) { _, _ ->
+                    val navController = Navigation.findNavController(itemView)
+                    navController.navigate(
+                        FirstFragmentDirections.actionFirstFragmentToDetailInfoFragment(
+                            hit
+                        )
+                    )
+                }
+                .setNegativeButton(
+                    itemView.context.getString(R.string.no_button)
+                ) { _, _ ->
+                }
+                .create().show()
         }
     }
 }

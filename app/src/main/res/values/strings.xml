@@ -7,4 +7,7 @@
     <string name="likes_number">Likes Number: %1$s</string>
     <string name="coments_number">Comments Number: %1$s</string>
     <string name="downloads_number">Downloads Number: %1$s</string>
+    <string name="show_details_question">Show details?</string>
+    <string name="yes_button">Yes</string>
+    <string name="no_button">No</string>
 </resources>
