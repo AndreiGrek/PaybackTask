@@ -1,7 +1,9 @@
 package com.example.paybacktask.domain
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 data class PixabayResponse(
     @SerializedName("hits")
@@ -12,6 +14,7 @@ data class PixabayResponse(
     val totalHits: Int
 )
 
+@Parcelize
 data class Hit(
     @SerializedName("collections")
     val collections: Int,
@@ -57,4 +60,4 @@ data class Hit(
     val webformatURL: String,
     @SerializedName("webformatWidth")
     val webformatWidth: Int
-)
+) : Parcelable

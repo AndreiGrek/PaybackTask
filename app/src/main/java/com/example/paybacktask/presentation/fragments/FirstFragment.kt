@@ -1,4 +1,4 @@
-package com.example.paybacktask.presentation
+package com.example.paybacktask.presentation.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.paybacktask.PixabyApplication
 import com.example.paybacktask.R
 import com.example.paybacktask.databinding.FragmentFirstBinding
+import com.example.paybacktask.presentation.PicturesAdapter
+import com.example.paybacktask.presentation.PixabyViewModel
 
 class FirstFragment : Fragment() {
 
