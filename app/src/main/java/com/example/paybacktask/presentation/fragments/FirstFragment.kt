@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import android.widget.Toast.LENGTH_SHORT
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,10 +15,11 @@ import com.example.paybacktask.R
 import com.example.paybacktask.databinding.FragmentFirstBinding
 import com.example.paybacktask.presentation.PicturesAdapter
 import com.example.paybacktask.presentation.PixabyViewModel
+import com.example.paybacktask.presentation.Utils
 
 class FirstFragment : Fragment() {
 
-    private  val FRUITS = "fruits"
+    private val FRUITS = "fruits"
     private lateinit var recyclerView: RecyclerView
     private lateinit var picturesAdapter: PicturesAdapter
     private lateinit var binding: FragmentFirstBinding
@@ -36,19 +39,37 @@ class FirstFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        pixabyViewModel.getAllPictures(FRUITS)
+        sendRequest()
+        initRecyclerView(view)
+        initOnclickListeners()
+        observeViewModel()
+    }
+
+    private fun sendRequest(query: String = FRUITS) {
+        pixabyViewModel.getAllPictures(query)
+    }
+
+    private fun initRecyclerView(view: View) {
         recyclerView = view.findViewById(R.id.rv_hits_list)
         recyclerView.layoutManager = LinearLayoutManager(context)
+    }
 
+    private fun initOnclickListeners() {
         binding.btnSearch.setOnClickListener {
-            val query = binding.etSearch.text.toString()
-            pixabyViewModel.getAllPictures(query)
+            if (Utils.hasNetwork(requireContext())) {
+                val query = binding.etSearch.text.toString()
+                sendRequest(query)
+            } else {
+                Toast.makeText(activity, R.string.no_internet_connection, LENGTH_SHORT).show()
+            }
         }
+    }
 
-        pixabyViewModel.pixabayResponse.observe(viewLifecycleOwner, {
+    private fun observeViewModel() {
+        pixabyViewModel.pixabayResponse.observe(viewLifecycleOwner) {
             picturesAdapter = PicturesAdapter(it.hits)
             recyclerView.adapter = picturesAdapter
             picturesAdapter.notifyDataSetChanged()
-        })
+        }
     }
 }

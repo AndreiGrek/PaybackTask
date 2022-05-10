@@ -37,7 +37,7 @@ class DetailInfoFragment : Fragment() {
             tvTags.text = getString(R.string.tags, hit?.tags)
             tvLikesNumber.text = getString(R.string.likes_number, hit?.likes.toString())
             tvDownloadsNumber.text = getString(R.string.downloads_number, hit?.downloads.toString())
-            tvCommentsNumber.text = getString(R.string.coments_number, hit?.comments.toString())
+            tvCommentsNumber.text = getString(R.string.comments_number, hit?.comments.toString())
         }
     }
 }
