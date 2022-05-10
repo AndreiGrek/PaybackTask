@@ -1,11 +1,10 @@
-package com.example.paybacktask.presentation
+package com.example.paybacktask.presentation.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.paybacktask.R
 
 class MainActivity : AppCompatActivity() {
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

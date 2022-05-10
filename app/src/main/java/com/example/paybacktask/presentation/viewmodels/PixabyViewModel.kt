@@ -1,4 +1,4 @@
-package com.example.paybacktask.presentation
+package com.example.paybacktask.presentation.viewmodels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,26 +11,21 @@ class PixabyViewModel(
     private val getAllHitsUseCase: GetAllHitsUseCase,
 ) : ViewModel() {
 
-    val errorMessage = MutableLiveData<String>()
+    private val errorMessage = MutableLiveData<String>()
     var pixabayResponse = MutableLiveData<PixabayResponse>()
 
     private var job: Job? = null
     private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
         println("CoroutineExceptionHandler got $throwable")
         onError("Exception handled: ${throwable.localizedMessage}")
-//        personListFromServer = getAllPersonFromDBUseCase.execute().asLiveData() as MutableLiveData
     }
-//    val loading = MutableLiveData<Boolean>()
 
     fun getAllPictures(query: String) {
         job = CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
             val response = getAllHitsUseCase.execute(query)
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
-//                    loading.value = true
-//                    delay(1000)
                     pixabayResponse.postValue(response.body())
-//                    loading.value = false
                 } else {
                     onError("Error : ${response.message()} ")
                 }
@@ -39,11 +34,8 @@ class PixabyViewModel(
     }
 
 
-
     private fun onError(message: String) {
-//        loading.postValue(true)
         errorMessage.postValue(message)
-//        loading.postValue(false)
     }
 
     override fun onCleared() {

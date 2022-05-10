@@ -26,7 +26,6 @@ class PicturesAdapter(private val hits: List<Hit>) :
     }
 
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
-
         holder.userName.text = hits[position].user
         holder.tags.text = hits[position].tags
         holder.hit = hits[position]
