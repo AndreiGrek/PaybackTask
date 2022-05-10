@@ -8,6 +8,9 @@ import android.os.Build
 class Utils {
 
     companion object {
+        /*
+        Check if there is internet connection
+       */
         fun hasNetwork(context: Context): Boolean {
             val connectivityManager =
                 context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager

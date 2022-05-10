@@ -1,9 +1,10 @@
 package com.example.paybacktask.domain
 
 import retrofit2.Response
+import javax.inject.Inject
 
-class GetAllHitsUseCase(private val repository: Repository) {
+class GetAllHitsUseCase @Inject constructor(private val paybackRepository: PaybackRepository) {
     suspend fun execute(query: String): Response<PixabayResponse> {
-        return repository.getAllHits(query)
+        return paybackRepository.getAllHits(query)
     }
 }

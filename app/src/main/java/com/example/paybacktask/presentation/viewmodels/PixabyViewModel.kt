@@ -6,8 +6,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.paybacktask.domain.GetAllHitsUseCase
 import com.example.paybacktask.domain.PixabayResponse
 import kotlinx.coroutines.*
+import javax.inject.Inject
 
-class PixabyViewModel(
+class PixabyViewModel @Inject constructor(
     private val getAllHitsUseCase: GetAllHitsUseCase,
 ) : ViewModel() {
 
@@ -33,7 +34,6 @@ class PixabyViewModel(
         }
     }
 
-
     private fun onError(message: String) {
         errorMessage.postValue(message)
     }
@@ -43,7 +43,7 @@ class PixabyViewModel(
         job?.cancel()
     }
 
-    class PixabyViewModelFactory(
+    class PixabyViewModelFactory @Inject constructor(
         private val getAllHitsUseCase: GetAllHitsUseCase
     ) :
         ViewModelProvider.Factory {

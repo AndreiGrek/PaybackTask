@@ -2,19 +2,22 @@ package com.example.paybacktask
 
 import android.app.Application
 import android.content.Context
-import androidx.lifecycle.ViewModelProvider.NewInstanceFactory.Companion.instance
-import com.example.paybacktask.data.RepositoryImpl
+import com.example.paybacktask.data.PaybackRepositoryImpl
 import com.example.paybacktask.data.RetrofitData
+import com.example.paybacktask.di.DaggerApplicationComponent
 import com.example.paybacktask.domain.GetAllHitsUseCase
 
 class PixabyApplication : Application() {
 
-//    private val applicationScope = CoroutineScope(SupervisorJob())
+    //Dagger
+    val component by lazy {
+        DaggerApplicationComponent.create()
+    }
 
     private val retrofit by lazy { RetrofitData.getInstance()}
 
     //Repositories
-    private val repository by lazy { RepositoryImpl(retrofit) }
+    private val repository by lazy { PaybackRepositoryImpl(retrofit) }
 
     //Usecases
     val getAllHitsUseCase by lazy { GetAllHitsUseCase(repository) }
@@ -29,11 +32,6 @@ class PixabyApplication : Application() {
         fun applicationContext() : Context {
             return instance!!.applicationContext
         }
-    }
-
-    override fun onCreate() {
-        super.onCreate()
-        val context: Context = PixabyApplication.applicationContext()
     }
 
 }

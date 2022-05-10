@@ -2,6 +2,6 @@ package com.example.paybacktask.domain
 
 import retrofit2.Response
 
-interface Repository {
+interface PaybackRepository {
     suspend fun getAllHits(query: String): Response<PixabayResponse>
 }

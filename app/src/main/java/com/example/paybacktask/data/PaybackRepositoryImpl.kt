@@ -1,9 +1,10 @@
 package com.example.paybacktask.data
 
-import com.example.paybacktask.domain.Repository
+import com.example.paybacktask.domain.PaybackRepository
+import javax.inject.Inject
 
-class RepositoryImpl(
+class PaybackRepositoryImpl @Inject constructor(
     private val retrofitService: RetrofitService,
-) : Repository {
+) : PaybackRepository {
     override suspend fun getAllHits(query: String) = retrofitService.getAllHits(query)
 }

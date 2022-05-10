@@ -19,6 +19,10 @@ import com.example.paybacktask.domain.Utils
 
 class FirstFragment : Fragment() {
 
+    private val component by lazy {
+        (requireActivity().application as PixabyApplication).component
+    }
+
     private val FRUITS = "fruits"
     private lateinit var recyclerView: RecyclerView
     private lateinit var picturesAdapter: PicturesAdapter
@@ -33,13 +37,14 @@ class FirstFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        component.inject(this)
         binding = FragmentFirstBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        sendRequest()
+
         initRecyclerView(view)
         initOnclickListeners()
         observeViewModel()
@@ -58,7 +63,11 @@ class FirstFragment : Fragment() {
         binding.btnSearch.setOnClickListener {
             if (Utils.hasNetwork(requireContext())) {
                 val query = binding.etSearch.text.toString()
-                sendRequest(query)
+                if (query.isEmpty()) {
+                    sendRequest(FRUITS)
+                } else {
+                    sendRequest(query)
+                }
             } else {
                 Toast.makeText(activity, R.string.no_internet_connection, LENGTH_SHORT).show()
             }
