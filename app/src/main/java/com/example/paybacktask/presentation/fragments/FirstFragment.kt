@@ -27,6 +27,7 @@ class FirstFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var picturesAdapter: PicturesAdapter
     private lateinit var binding: FragmentFirstBinding
+    private var query: String = ""
     private val pixabyViewModel: PixabyViewModel by activityViewModels {
         PixabyViewModel.PixabyViewModelFactory(
             (activity?.application as PixabyApplication).getAllHitsUseCase,
@@ -44,6 +45,10 @@ class FirstFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        if (pixabyViewModel.query.value.isNullOrBlank()) {
+            sendRequest()
+        }
         initRecyclerView(view)
         initOnclickListeners()
         observeViewModel()
@@ -61,10 +66,11 @@ class FirstFragment : Fragment() {
     private fun initOnclickListeners() {
         binding.btnSearch.setOnClickListener {
             if (Utils.hasNetwork(requireContext())) {
-                val query = binding.etSearch.text.toString()
+                query = binding.etSearch.text.toString()
                 if (query.isEmpty()) {
-                    sendRequest(FRUITS)
+                    sendRequest()
                 } else {
+                    pixabyViewModel.setQuery(query)
                     sendRequest(query)
                 }
             } else {

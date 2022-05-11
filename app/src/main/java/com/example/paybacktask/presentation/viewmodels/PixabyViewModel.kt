@@ -1,5 +1,6 @@
 package com.example.paybacktask.presentation.viewmodels
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -13,7 +14,18 @@ class PixabyViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val errorMessage = MutableLiveData<String>()
-    var pixabayResponse = MutableLiveData<PixabayResponse>()
+
+    private var _pixabayResponse = MutableLiveData<PixabayResponse>()
+    val pixabayResponse: LiveData<PixabayResponse>
+        get() = _pixabayResponse
+
+    private var _query = MutableLiveData<String>()
+    val query: LiveData<String>
+        get() = _query
+
+    fun setQuery(query: String) {
+        _query.value = query
+    }
 
     private var job: Job? = null
     private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
@@ -26,7 +38,7 @@ class PixabyViewModel @Inject constructor(
             val response = getAllHitsUseCase.execute(query)
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
-                    pixabayResponse.postValue(response.body())
+                    _pixabayResponse.postValue(response.body())
                 } else {
                     onError("Error : ${response.message()} ")
                 }
