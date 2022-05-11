@@ -19,7 +19,7 @@ class PixabyApplication : Application() {
     //Repositories
     private val repository by lazy { PaybackRepositoryImpl(retrofit) }
 
-    //Usecases
+    //UseCases
     val getAllHitsUseCase by lazy { GetAllHitsUseCase(repository) }
 
     init{
@@ -33,5 +33,4 @@ class PixabyApplication : Application() {
             return instance!!.applicationContext
         }
     }
-
 }

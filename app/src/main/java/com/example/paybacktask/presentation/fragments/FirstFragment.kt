@@ -15,7 +15,7 @@ import com.example.paybacktask.R
 import com.example.paybacktask.databinding.FragmentFirstBinding
 import com.example.paybacktask.presentation.PicturesAdapter
 import com.example.paybacktask.presentation.viewmodels.PixabyViewModel
-import com.example.paybacktask.domain.Utils
+import com.example.paybacktask.utils.Utils
 
 class FirstFragment : Fragment() {
 

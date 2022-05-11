@@ -1,4 +1,4 @@
-package com.example.paybacktask.domain
+package com.example.paybacktask.utils
 
 import android.content.Context
 import android.net.ConnectivityManager

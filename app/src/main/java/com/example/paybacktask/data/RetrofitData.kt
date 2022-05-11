@@ -1,7 +1,7 @@
 package com.example.paybacktask.data
 
 import com.example.paybacktask.PixabyApplication
-import com.example.paybacktask.domain.Utils
+import com.example.paybacktask.utils.Utils
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 
@@ -12,8 +12,8 @@ class RetrofitData {
 
     companion object {
 
-        private const val cacheSize = (5 * 1024 * 1024).toLong()
-        private val myCache = Cache(PixabyApplication.applicationContext().cacheDir, cacheSize)
+        private const val CACHE_SIZE = (5 * 1024 * 1024).toLong()
+        private val myCache = Cache(PixabyApplication.applicationContext().cacheDir, CACHE_SIZE)
         private const val URL = "https://pixabay.com/"
 
         var retrofitService: RetrofitService? = null
