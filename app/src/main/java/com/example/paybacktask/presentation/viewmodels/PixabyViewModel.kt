@@ -13,8 +13,6 @@ class PixabyViewModel @Inject constructor(
     private val getAllHitsUseCase: GetAllHitsUseCase,
 ) : ViewModel() {
 
-    private val errorMessage = MutableLiveData<String>()
-
     private var _pixabayResponse = MutableLiveData<PixabayResponse>()
     val pixabayResponse: LiveData<PixabayResponse>
         get() = _pixabayResponse
@@ -26,6 +24,10 @@ class PixabyViewModel @Inject constructor(
     fun setQuery(query: String) {
         _query.value = query
     }
+
+    private var _errorMessage = MutableLiveData<String>()
+    val errorMessage: LiveData<String>
+        get() = _errorMessage
 
     private var job: Job? = null
     private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
@@ -47,7 +49,7 @@ class PixabyViewModel @Inject constructor(
     }
 
     private fun onError(message: String) {
-        errorMessage.postValue(message)
+        _errorMessage.postValue(message)
     }
 
     override fun onCleared() {
