@@ -1,51 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".presentation.fragments.FirstFragment">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_search"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:hint="@string/enter_the_query"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent"
+        tools:context=".presentation.fragments.FirstFragment">
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/et_search"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_search"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_normal"
+            android:hint="@string/enter_the_query"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-    <ImageView
-        android:id="@+id/btn_search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/ic_baseline_search_24"
-        app:layout_constraintTop_toTopOf="@+id/til_search"
-        app:layout_constraintBottom_toBottomOf="@+id/til_search"
-        app:layout_constraintEnd_toEndOf="@+id/til_search"
-        android:layout_marginEnd="20dp"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/btn_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/space_very_big"
+            android:background="@drawable/ic_baseline_search_24"
+            app:layout_constraintBottom_toBottomOf="@+id/til_search"
+            app:layout_constraintEnd_toEndOf="@+id/til_search"
+            app:layout_constraintTop_toTopOf="@+id/til_search" />
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_hits_list"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/til_search"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_hits_list"
+            android:layout_width="@dimen/space_empty"
+            android:layout_height="@dimen/space_empty"
+            android:layout_marginStart="@dimen/space_mini"
+            android:layout_marginEnd="@dimen/space_mini"
+            android:layout_marginBottom="@dimen/space_mini"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/til_search" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

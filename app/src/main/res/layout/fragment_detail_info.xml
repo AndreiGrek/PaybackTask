@@ -1,65 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="8dp"
-    tools:context=".presentation.fragments.DetailInfoFragment">
 
-    <TextView
-        android:id="@+id/tv_user_name"
-        android:textColor="@color/black"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:text="User Name"/>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/space_mini"
+        tools:context=".presentation.fragments.DetailInfoFragment">
 
-    <TextView
-        android:id="@+id/tv_tags"
-        android:layout_width="wrap_content"
-        android:textColor="@color/black"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/tv_user_name"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:text="Tags"/>
+        <TextView
+            android:id="@+id/tv_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="User Name" />
 
-    <TextView
-        android:id="@+id/tv_likes_number"
-        android:layout_width="wrap_content"
-        android:textColor="@color/black"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/tv_tags"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:text="Likes Number"/>
+        <TextView
+            android:id="@+id/tv_tags"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_user_name"
+            tools:text="Tags" />
 
-    <TextView
-        android:id="@+id/tv_downloads_number"
-        android:layout_width="wrap_content"
-        android:textColor="@color/black"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/tv_likes_number"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:text="Download Number"/>
+        <TextView
+            android:id="@+id/tv_likes_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_tags"
+            tools:text="Likes Number" />
 
-    <TextView
-        android:id="@+id/tv_comments_number"
-        android:layout_width="wrap_content"
-        android:textColor="@color/black"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/tv_downloads_number"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:text="Comments Number"/>
+        <TextView
+            android:id="@+id/tv_downloads_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_likes_number"
+            tools:text="Download Number" />
 
-    <ImageView
-        android:id="@+id/iv_image_big"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/tv_comments_number"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:background="@drawable/ic_launcher_foreground"/>
+        <TextView
+            android:id="@+id/tv_comments_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_downloads_number"
+            tools:text="Comments Number" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:id="@+id/iv_image_big"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_comments_number"
+            tools:background="@drawable/ic_launcher_foreground" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

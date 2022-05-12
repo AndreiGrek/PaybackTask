@@ -1,9 +1,6 @@
 package com.example.paybacktask.presentation.viewmodels
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.*
 import com.example.paybacktask.domain.GetAllHitsUseCase
 import com.example.paybacktask.domain.PixabayResponse
 import kotlinx.coroutines.*
@@ -36,7 +33,7 @@ class PixabyViewModel @Inject constructor(
     }
 
     fun getAllPictures(query: String) {
-        job = CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
+        job = viewModelScope.launch (Dispatchers.IO + exceptionHandler){
             val response = getAllHitsUseCase.execute(query)
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
