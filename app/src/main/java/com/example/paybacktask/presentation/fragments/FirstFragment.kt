@@ -16,6 +16,7 @@ import com.example.paybacktask.databinding.FragmentFirstBinding
 import com.example.paybacktask.presentation.PicturesAdapter
 import com.example.paybacktask.presentation.viewmodels.PixabyViewModel
 import com.example.paybacktask.utils.Utils
+import javax.inject.Inject
 
 class FirstFragment : Fragment() {
 
@@ -28,10 +29,12 @@ class FirstFragment : Fragment() {
     private lateinit var picturesAdapter: PicturesAdapter
     private lateinit var binding: FragmentFirstBinding
     private var query: String = ""
+
+    @Inject
+    lateinit var pixabyViewModelFactory: PixabyViewModel.PixabyViewModelFactory
+
     private val pixabyViewModel: PixabyViewModel by activityViewModels {
-        PixabyViewModel.PixabyViewModelFactory(
-            (activity?.application as PixabyApplication).getAllHitsUseCase,
-        )
+        pixabyViewModelFactory
     }
 
     override fun onCreateView(

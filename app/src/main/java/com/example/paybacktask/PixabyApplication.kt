@@ -14,13 +14,6 @@ class PixabyApplication : Application() {
         DaggerApplicationComponent.create()
     }
 
-    private val retrofit by lazy { RetrofitData.getInstance()}
-
-    //Repositories
-    private val repository by lazy { PaybackRepositoryImpl(retrofit) }
-
-    //UseCases
-    val getAllHitsUseCase by lazy { GetAllHitsUseCase(repository) }
 
     init{
         instance = this
