@@ -13,21 +13,8 @@ class DetailedInfoViewModel @Inject constructor() : ViewModel() {
     val hitData: LiveData<Hit>
         get() = _hitData
 
-    fun setHitData (hit: Hit) {
+    fun setHitData(hit: Hit) {
         _hitData.value = hit
-    }
-
-    class DetailedInfoViewModelFactory @Inject constructor(
-    ) :
-        ViewModelProvider.Factory {
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(DetailedInfoViewModel::class.java)) {
-                @Suppress("UNCHECKED_CAST")
-                return DetailedInfoViewModel(
-                ) as T
-            }
-            throw IllegalArgumentException("Unknown ViewModel class")
-        }
     }
 }
 

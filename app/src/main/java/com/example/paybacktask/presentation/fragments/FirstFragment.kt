@@ -14,6 +14,7 @@ import com.example.paybacktask.PixabyApplication
 import com.example.paybacktask.R
 import com.example.paybacktask.databinding.FragmentFirstBinding
 import com.example.paybacktask.presentation.PicturesAdapter
+import com.example.paybacktask.presentation.PixabyViewModelFactory
 import com.example.paybacktask.presentation.viewmodels.PixabyViewModel
 import com.example.paybacktask.utils.Utils
 import javax.inject.Inject
@@ -31,7 +32,7 @@ class FirstFragment : Fragment() {
     private var query: String = ""
 
     @Inject
-    lateinit var pixabyViewModelFactory: PixabyViewModel.PixabyViewModelFactory
+    lateinit var pixabyViewModelFactory: PixabyViewModelFactory
 
     private val pixabyViewModel: PixabyViewModel by activityViewModels {
         pixabyViewModelFactory

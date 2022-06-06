@@ -53,19 +53,4 @@ class PixabyViewModel @Inject constructor(
         super.onCleared()
         job?.cancel()
     }
-
-    class PixabyViewModelFactory @Inject constructor(
-        private val getAllHitsUseCase: GetAllHitsUseCase
-    ) :
-        ViewModelProvider.Factory {
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(PixabyViewModel::class.java)) {
-                @Suppress("UNCHECKED_CAST")
-                return PixabyViewModel(
-                    getAllHitsUseCase
-                ) as T
-            }
-            throw IllegalArgumentException("Unknown ViewModel class")
-        }
-    }
 }
