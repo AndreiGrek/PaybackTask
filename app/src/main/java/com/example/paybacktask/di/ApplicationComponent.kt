@@ -1,7 +1,8 @@
 package com.example.paybacktask.di
 
-import com.example.paybacktask.presentation.activities.MainActivity
+import android.content.Context
 import com.example.paybacktask.presentation.fragments.FirstFragment
+import dagger.BindsInstance
 import dagger.Component
 
 @Component(
@@ -9,6 +10,14 @@ import dagger.Component
 )
 interface ApplicationComponent {
 
-    fun inject (activity: MainActivity)
-    fun inject (fragment: FirstFragment)
+    fun inject(fragment: FirstFragment)
+
+    @Component.Factory
+    interface ComponentFactory {
+
+        /** Метод для предоставления контекста */
+        fun create(
+            @BindsInstance context: Context
+        ): ApplicationComponent
+    }
 }

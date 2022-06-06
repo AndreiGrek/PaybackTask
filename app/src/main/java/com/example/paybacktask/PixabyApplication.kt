@@ -11,19 +11,8 @@ class PixabyApplication : Application() {
 
     //Dagger
     val component by lazy {
-        DaggerApplicationComponent.create()
+        DaggerApplicationComponent.factory()
+            .create(this)
     }
 
-
-    init{
-        instance = this
-    }
-
-    companion object{
-        private var instance: PixabyApplication? = null
-
-        fun applicationContext() : Context {
-            return instance!!.applicationContext
-        }
-    }
 }
