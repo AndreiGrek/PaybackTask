@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import javax.inject.Inject
 
-class PixabyViewModelFactory @Inject constructor(
+class ViewModelFactory @Inject constructor(
     private val viewModels: @JvmSuppressWildcards Map<String, ViewModel>
 ) : ViewModelProvider.Factory {
 

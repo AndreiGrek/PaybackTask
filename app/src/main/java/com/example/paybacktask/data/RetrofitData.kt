@@ -10,16 +10,16 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Inject
 
-class RetrofitData @Inject constructor(private val context: Context){
+class RetrofitData @Inject constructor(){
 
     companion object {
 
         private const val CACHE_SIZE = (5 * 1024 * 1024).toLong()
-        private val myCache = Cache(context.cacheDir, CACHE_SIZE)
         private const val URL = "https://pixabay.com/"
 
         var retrofitService: RetrofitService? = null
-        fun getInstance(): RetrofitService {
+        fun getInstance(context: Context): RetrofitService {
+            val myCache = Cache(context.cacheDir, CACHE_SIZE)
             if (retrofitService == null) {
 
                 val client =  OkHttpClient.Builder()

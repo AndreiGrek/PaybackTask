@@ -1,5 +1,6 @@
 package com.example.paybacktask.presentation.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,7 +15,7 @@ import com.example.paybacktask.PixabyApplication
 import com.example.paybacktask.R
 import com.example.paybacktask.databinding.FragmentFirstBinding
 import com.example.paybacktask.presentation.PicturesAdapter
-import com.example.paybacktask.presentation.PixabyViewModelFactory
+import com.example.paybacktask.presentation.ViewModelFactory
 import com.example.paybacktask.presentation.viewmodels.PixabyViewModel
 import com.example.paybacktask.utils.Utils
 import javax.inject.Inject
@@ -32,17 +33,22 @@ class FirstFragment : Fragment() {
     private var query: String = ""
 
     @Inject
-    lateinit var pixabyViewModelFactory: PixabyViewModelFactory
+    lateinit var viewModelFactory: ViewModelFactory
 
     private val pixabyViewModel: PixabyViewModel by activityViewModels {
-        pixabyViewModelFactory
+        viewModelFactory
+    }
+
+    override fun onAttach(context: Context) {
+        /** Хз почему, но лучше прописывать инжект в onAttach() */
+        component.inject(this)
+        super.onAttach(context)
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        component.inject(this)
         binding = FragmentFirstBinding.inflate(inflater, container, false)
         return binding.root
     }

@@ -1,5 +1,6 @@
 package com.example.paybacktask.presentation.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,20 +8,36 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
+import com.example.paybacktask.PixabyApplication
 import com.example.paybacktask.R
 import com.example.paybacktask.databinding.FragmentDetailInfoBinding
 import com.example.paybacktask.domain.Hit
+import com.example.paybacktask.presentation.ViewModelFactory
 import com.example.paybacktask.presentation.viewmodels.DetailedInfoViewModel
 import com.squareup.picasso.Picasso
+import javax.inject.Inject
 
 class DetailInfoFragment : Fragment() {
 
-    private val detailedInfoViewModel: DetailedInfoViewModel by activityViewModels {
-        DetailedInfoViewModel.DetailedInfoViewModelFactory()
+    private val component by lazy {
+        (requireActivity().application as PixabyApplication).component
     }
+
     private lateinit var binding: FragmentDetailInfoBinding
     private val args by navArgs<DetailInfoFragmentArgs>()
     private var hit: Hit? = null
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private val detailedInfoViewModel: DetailedInfoViewModel by activityViewModels {
+        viewModelFactory
+    }
+
+    override fun onAttach(context: Context) {
+        component.inject(this)
+        super.onAttach(context)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

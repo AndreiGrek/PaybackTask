@@ -1,5 +1,6 @@
 package com.example.paybacktask.di
 
+import android.app.Application
 import com.example.paybacktask.data.PaybackRepositoryImpl
 import com.example.paybacktask.data.RetrofitData
 import com.example.paybacktask.data.RetrofitService
@@ -16,8 +17,8 @@ interface ApplicationModule {
 
     companion object {
         @Provides
-        fun provideRetrofitService() : RetrofitService {
-            return RetrofitData.getInstance()
+        fun provideRetrofitService(application: Application) : RetrofitService {
+            return RetrofitData.getInstance(application)
         }
     }
 }
